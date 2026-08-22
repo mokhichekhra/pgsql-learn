@@ -40,6 +40,8 @@ FROM products --********
 -- units_in_stock
 -- remainder
  --********
+ SELECT product_name, units_in_stock, units_in_stock % 5 AS remainder
+ from products
  -- Task 6 — Increase product prices
  -- Assume every product price increases by 10%.
  -- Calculate the new price.
@@ -47,6 +49,9 @@ FROM products --********
  -- product_name
 -- unit_price
 -- new_price
+
+select product_name, unit_price, (unit_price + (unit_price*0.1)) as new_price
+from products
 --**********************
 -- Task 7 — 20% discount
  -- Calculate the price after applying a 20% discount to every product.
@@ -55,6 +60,9 @@ FROM products --********
 -- unit_price
 -- discount_amount
 -- price_after_discount
+
+SELECT product_name, unit_price, (unit_price*0.2) as discount_amount, (unit_price - (unit_price*0.2)) as price_after_discount
+from products
 --*********************
 -- Task 8 — Final order-line amount
  -- Calculate how much the customer actually pays after the discount.
@@ -67,6 +75,8 @@ FROM products --********
 -- quantity
 -- discount
 -- final_amount
+SELECT*, (unit_price * quantity) - discount as final_amount
+from order_details
 --******************************
 -- Task 9 — POWER
  -- Calculate the square of every product's unit_price.
@@ -76,3 +86,5 @@ FROM products --********
  -- product_name
 -- unit_price
 -- price_squared
+SELECT product_name, unit_price, power(unit_price, 2) AS price_squared 
+FROM products
